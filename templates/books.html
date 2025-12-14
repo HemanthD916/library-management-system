@@ -1,0 +1,48 @@
+{% extends "index.html" %}
+{% block content %}
+<h2>Manage Books</h2>
+<table border="1">
+    <tr><th>ID</th><th>Title</th><th>Author</th><th>ISBN</th><th>Cost</th><th>Status</th></tr>
+    {% for book in books %}
+    <tr>
+        <td>{{ book.book_id }}</td>
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.isbn }}</td>
+        <td>{{ book.cost }}</td>
+        <td>{{ book.status }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h3>Add Book</h3>
+<form method="POST">
+    <input type="hidden" name="action" value="add">
+    Author: <input name="author"><br>
+    Title: <input name="title"><br>
+    ISBN: <input name="isbn"><br>
+    Book ID: <input name="book_id" type="number"><br>
+    Cost: <input name="cost" type="number" step="0.01"><br>
+    Status: <input name="status" value="In"><br>
+    <button type="submit">Add</button>
+</form>
+
+<h3>Edit Book (Leave fields blank to keep current)</h3>
+<form method="POST">
+    <input type="hidden" name="action" value="edit">
+    Book ID: <input name="book_id" type="number" required><br>
+    New Author: <input name="author"><br>
+    New Title: <input name="title"><br>
+    New ISBN: <input name="isbn"><br>
+    New Cost: <input name="cost" type="number" step="0.01"><br>
+    New Status: <input name="status"><br>
+    <button type="submit">Edit</button>
+</form>
+
+<h3>Delete Book</h3>
+<form method="POST">
+    <input type="hidden" name="action" value="delete">
+    Book ID: <input name="book_id" type="number" required><br>
+    <button type="submit">Delete</button>
+</form>
+{% endblock %}
