@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Library Management System</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        nav { margin-bottom: 20px; }
+        nav a { margin-right: 10px; }
+        .message { color: green; } /* For flash success */
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Library Management System</h1>
+    <nav>
+        <a href="{{ url_for('manage_books') }}">Manage Books</a>
+        <a href="{{ url_for('manage_patrons') }}">Manage Patrons</a>
+        <a href="{{ url_for('manage_loans') }}">Manage Loans</a>
+    </nav>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <p class="{{ category }}">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</body>
+</html>
